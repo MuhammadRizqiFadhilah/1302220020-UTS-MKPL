@@ -51,7 +51,7 @@ public class Employee {
 	 * Fungsi untuk menentukan gaji bulanan pegawai berdasarkan grade kepegawaiannya (grade 1: 3.000.000 per bulan, grade 2: 5.000.000 per bulan, grade 3: 7.000.000 per bulan)
 	 * Jika pegawai adalah warga negara asing gaji bulanan diperbesar sebanyak 50%
 	 */
-	
+	/**
 	public void setMonthlySalary(int grade) {	
 		if (grade == 1) {
 			monthlySalary = 3000000;
@@ -69,6 +69,23 @@ public class Employee {
 				monthlySalary = (int) (3000000 * 1.5);
 			}
 		}
+	}
+	*/
+	private int getBaseSalaryByGrade(int grade) {
+		switch (grade) {
+			case 1: return 3000000;
+			case 2: return 5000000;
+			case 3: return 7000000;
+			default: return 0;
+		}
+	}
+
+	public void setMonthlySalary(int grade) {
+		int baseSalary = getBaseSalaryByGrade(grade);
+		if (isForeigner) {
+			baseSalary *= 1.5;
+		}
+		monthlySalary = (int) baseSalary;
 	}
 	
 	public void setAnnualDeductible(int deductible) {	
